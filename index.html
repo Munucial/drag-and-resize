@@ -4,10 +4,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      <link rel="stylesheet" href="/user/system/files/css/drag-resize.css">
-      <link rel="stylesheet" href="/user/system/files/css/smalltxt.css">
-      <script src="/user/system/files/js/jquery.js"></script><script src="/user/system/files/js/jq-ui.js"></script>
-      <script src="/user/system/files/js/html2canvas.js"></script>
+      <link rel="stylesheet" href="https://newspaper.custom.munucial.com:5118/user/system/files/css/drag-resize.css">
+      <link rel="stylesheet" href="https://newspaper.custom.munucial.com:5118/user/system/files/css/smalltxt.css">
+      <script src="https://newspaper.custom.munucial.com:5118/user/system/files/js/jquery.js"></script>
+      <script src="https://newspaper.custom.munucial.com:5118/user/system/files/js/jq-ui.js"></script>
+      <script src="https://newspaper.custom.munucial.com:5118/user/system/files/js/html2canvas.js"></script>
    </head>
    <body>
       <div id="output">
@@ -34,6 +35,33 @@
       </div>
       <br><br><br><button id="convert">Convert to PNG</button>
       <div id="resultdiv"></div>
-      <script src="/user/system/files/js/drag-resize.js"></script><script src="/user/system/files/js/convert2png.js"></script>
+      <!--<script src="/user/system/files/js/drag-resize.js"></script>-->
+      <script>
+         $(document).ready(function() {
+             $(".para").draggable({
+                 containment: "parent",
+                 disabled : true
+             });
+
+             $(".para").resizable({
+                 helper   : "ui-resizable-helper",
+                 disabled : true
+             });
+
+             $(document).on({
+                 keydown : function(e) {
+                     if (e.ctrlKey && e.altKey) {
+                         $(".para").draggable( "enable" );
+                         $(".para").resizable( "enable" );
+                     }
+                 }, 
+                 keyup : function() {
+                     $(".para").draggable( "disable" );
+                     $(".para").resizable( "disable" );
+                 }
+             });
+         });
+      </script>
+      <script src="https://newspaper.custom.munucial.com:5118/user/system/files/js/convert2png.js"></script>
    </body>
 </html>
